@@ -2,7 +2,7 @@
  * Copyright (c) 2013 Brain Book Software LLC
  * This software is licensed under the MIT license. A copy of the license
  * should have been included with this software.
-*/
+ */
 var BbsCardManager = 
 {
 	DB_VERSION: 1, // Increment each time words change
@@ -14,14 +14,12 @@ var BbsCardManager =
 	
 	// ---
 
-  initialize: function()
-  {
-  	// Prevent a swiping bug
+	initialize: function()
+	{
+		// Prevent a swiping bug
 		document.ontouchmove = function(event) {
-		    event.preventDefault();
+			event.preventDefault();
 		};
-
-		$(document).bind("pagechange", BbsCardManager.onPageChange);
 		$(document).bind('pageinit', function() {
 			if (!BbsCardManager.dbInitialized)
 				BbsCardManager.initDb();
@@ -32,12 +30,19 @@ var BbsCardManager =
 		$(document).bind('swiperight', function() {
 			$.mobile.changePage($('#frnt'), {transition: 'slide', reverse: true});
 		});
+
+		// We have to hide the word before the change and then show it afterwards,
+		// otherwise the word will jump around while JQM positions the headers and
+		// footers.
+		$(document).bind('pagebeforechange', function() {
+			BbsCardManager.hideWord();
+		});
 		$(document).bind('pagechange', function() {
 			BbsCardManager.displayWord();
 		});
-  },
+	},
 
-  initDb: function()
+	initDb: function()
 	{
 		this.dbInitialized = true;
 		this.openDb();
@@ -125,13 +130,21 @@ var BbsCardManager =
 			$.mobile.changePage($('#frnt'));
 		}
 	},
-	
+
+	hideWord: function()
+	{
+		document.getElementById('frontWord').style.display = 'none';
+		document.getElementById('backWord').style.display = 'none';
+	},
+
 	displayWord: function()
 	{
 		if (!this.curWord)
 			return;
 		document.getElementById('frontWord').innerHTML = this.curWord.foreign_word;
 		document.getElementById('backWord').innerHTML = this.curWord.native_word;
+		document.getElementById('frontWord').style.display = 'inline';
+		document.getElementById('backWord').style.display = 'inline';
 	},
 
 	getUnreadWord: function()

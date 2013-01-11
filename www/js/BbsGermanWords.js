@@ -2,9 +2,11 @@
  * Copyright (c) 2013 Brain Book Software LLC
  * This software is licensed under the MIT license. A copy of the license
  * should have been included with this software.
-*/
+ */
+// array of [<id>,<word>]
+// NOTE: The id must not change
 var BbsGermanWords = [
-  ['2','of','von'],
+	['2','of','von'],
 	['3','to','zu'],
 	['4','and','und'],
 	['5','a','ein'],
@@ -111,9 +113,7 @@ var BbsGermanWords = [
 	['109','to live','leben, wohnen'],
 	['110','where','wo, wohin'],
 	['111','after','nach, danach'],
-	['','(in the) back','hinten'],
 	['112','(giving) back','zurück'],
-	['','little (in size)','klein'],
 	['113','little (amount)','wenig, bisschen'],
 	['114','only','nur'],
 	['115','round','rund'],
@@ -161,7 +161,6 @@ var BbsGermanWords = [
 	['158','to play','spielen'],
 	['159','small','klein'],
 	['160','end','das Ende'],
-	['','to lay down','legen'],
 	['161','to put upright','stellen'],
 	['162','home','die Heimat'],
 	['163','to read','lesen'],
@@ -396,7 +395,6 @@ var BbsGermanWords = [
 	['399','to notice','bemerken'],
 	['400','voice','die Stimme'],
 	['401','unit','die Einheit'],
-	['','device','das Gerät'],
 	['402','power, force','die Macht, die Kraft'],
 	['403','town, city','die Stadt'],
 	['404','fine (penalty)','Geldstrafe'],
@@ -723,7 +721,6 @@ var BbsGermanWords = [
 	['751','gentle','sanft'],
 	['752','woman, wife','die Frau'],
 	['753','captain','der Kapitän'],
-	['','to separate','trennen'],
 	['756','difficult','schwierig'],
 	['757','doctor','der Arzt'],
 	['758','please','bitte'],
@@ -788,7 +785,6 @@ var BbsGermanWords = [
 	['820','famous','berühmt'],
 	['822','electricity','der Strom'],
 	['823','to fear','befürchten'],
-	['','the fear','die Angst/Furcht'],
 	['825','thin','dünn'],
 	['826','triangle','das Dreieck'],
 	['827','planet','der Planet'],
@@ -958,5 +954,11 @@ var BbsGermanWords = [
 	['998','teeth','die Zähne'],
 	['999','shell','die Schale'],
 	['1000','neck','der Hals'],
-	['1001','your (plural + informal)','euer']
+	['1001','your (plural + informal)','euer'],
+	['1002','to separate','trennen'],
+	['1003','device','das Gerät'],
+	['1004','the fear','die Angst/Furcht'],
+	['1005','to lay down','legen'],
+	['1006','(in the) back','hinten'],
+	['1007','little (in size)','klein']
 ];
