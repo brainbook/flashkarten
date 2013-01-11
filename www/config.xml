@@ -6,7 +6,7 @@
     <name>FlashKarten</name>
 
     <description>
-        German-English flashcard mobile app for the 1,000 most popular words. This mobile app utilizes PhoneGap.
+        German-English flashcards for the 1,000 most popular words.
     </description>
 
     <author href="http://brainbooksoftware.com" email="support@formfields.com">
@@ -44,5 +44,5 @@
     <gap:splash src="res/screen/ios/screen-iphone-portrait-2x.png" gap:platform="ios"     width="640" height="960" />
     <gap:splash src="res/screen/ios/screen-ipad-portrait.png"      gap:platform="ios"     width="768" height="1024" />
     <gap:splash src="res/screen/ios/screen-ipad-landscape.png"     gap:platform="ios"     width="1024" height="768" />
-    <gap:splash src="res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone" />
+    <gap:splash src="res/screen/windows-phone/screen-portrait.png" gap:platform="winphone" />
 </widget>
