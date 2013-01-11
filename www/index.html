@@ -1,119 +1,119 @@
 <!DOCTYPE html>
 <!--
-    Copyright (c) 2013 Brain Book Software LLC
+	Copyright (c) 2013 Brain Book Software LLC
 	This software is licensed under the MIT license. A copy of the license
 	should have been included with this software.
 -->
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <title>FlashKarten</title>
-    	<link rel="stylesheet" href="css/jquery.mobile-1.2.0.min.css" />
-    	<script src="js/jquery-1.8.2.min.js"></script>
-    	<script>
-    		$(document).bind("mobileinit", function() {
-    			$.mobile.defaultPageTransition = 'flip';
-    		});
-    	</script>
-    	<script src="js/jquery.mobile-1.2.0.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <script src="js/BbsCardManager.js"></script>
-    	<script src="js/BbsGermanWords.js"></script>
-        <script type="text/javascript">
-            BbsCardManager.initialize();
-        </script>
-    </head>
-    <body>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+		<title>FlashKarten</title>
+		<link rel="stylesheet" href="libs/jquery.mobile-1.2.0.min.css" />
+		<script src="libs/jquery-1.8.2.min.js"></script>
+		<script>
+			$(document).bind("mobileinit", function() {
+				$.mobile.defaultPageTransition = 'flip';
+			});
+		</script>
+		<script src="libs/jquery.mobile-1.2.0.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<script src="js/BbsCardManager.js"></script>
+		<script src="js/BbsGermanWords.js"></script>
+		<script type="text/javascript">
+			BbsCardManager.initialize();
+		</script>
+	</head>
+	<body>
 
-        <div data-role="page" id="frnt">
-        
-            <div data-role="header" data-position="fixed">
-        		<h1>FlashKarten</h1>
-        		<a onclick="BbsCardManager.displayStats();" data-icon="grid" class="ui-btn-right">Stats</a>
-        	</div>
-        
-        	<div data-role="content">
-        		<div id="tapFrnt" onclick="BbsCardManager.flip();">
-        			<div id="frontWord" class="card"></div>
-        		</div>
-        	</div>
-        
-        	<div data-role="footer" data-position="fixed">
-        		<div data-role="navbar">
-        			<ul>
-        				<li><a href="#frnt" class="ui-btn-active ui-state-persist">Front</a></li>
-        				<li><a href="#bck">Back</a></li>
-        			</ul>
-        		</div>
-        	</div>
-        
-        </div>
-        
-        
-        <div data-role="page" id="bck">
-        
-        	<div data-role="header" data-position="fixed">
-        		<h1>FlashKarten</h1>
-        		<a onclick="BbsCardManager.displayStats();" data-icon="grid" class="ui-btn-right">Stats</a>
-        	</div>
-        
-        	<div data-role="content">
-        		<div class="ui-grid-a">
-        			<div class="ui-block-a"><button type="submit" data-theme="b" data-icon="check" onclick="BbsCardManager.markAsCorrect();">Correct</button></div>
-        			<div class="ui-block-b"><button type="submit" data-theme="e" data-icon="delete" onclick="BbsCardManager.markAsWrong();">Wrong</button></div>
-        		</div>
-        		<div id="tapBck" onclick="BbsCardManager.flip();">
-        			<div id="backWord" class="card"></div>
-        		</div>
-        	</div>
-        
-        	<div data-role="footer" data-position="fixed">
-        		<div data-role="navbar">
-        			<ul>
-        				<li><a href="#frnt">Front</a></li>
-        				<li><a href="#bck" class="ui-btn-active ui-state-persist">Back</a></li>
-        			</ul>
-        		</div>
-        	</div>
-        
-        </div>
-        
-        
-        <div data-role="dialog" id="rst">
-        
-            <div data-role="header">
-                <h1>Congratulations!</h1>
-            </div>
-        
-            <div data-role="content">
-                <div id="rstTxt"></div>
-            </div>
-        
-        </div>
-        
-        
-        <div data-role="dialog" id="stats">
-        
-            <div data-role="header">
-                <h1>Stats</h1>
-            </div>
-        
-            <div data-role="content">
-        		<div id="statsTxt"></div>
-        		<a data-role="button" href="#conf" data-rel="popup">Reset Stats</a>
-        
-        		<div data-role="popup" id="conf" class="ui-content">
-        			Are you sure that you want to reset the stats?
-        			<a href="#" data-rel="back" data-role="button" data-icon="check" onclick="BbsCardManager.resetAllWords();BbsCardManager.goToFrntPage();">Yes</a>
-        			<a href="#" data-rel="back" data-role="button" data-icon="delete">No</a>
-        		</div>
-        
-            </div>
-        
-        </div>
+		<div data-role="page" id="frnt">
 
-    
-    </body>
+			<div data-role="header" data-position="fixed">
+				<h1>FlashKarten</h1>
+				<a onclick="BbsCardManager.displayStats();" data-icon="grid" class="ui-btn-right">Stats</a>
+			</div>
+
+			<div data-role="content">
+				<div id="tapFrnt" onclick="BbsCardManager.flip();">
+					<div id="frontWord" class="card"></div>
+				</div>
+			</div>
+
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#frnt" class="ui-btn-active ui-state-persist">Front</a></li>
+						<li><a href="#bck">Back</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div data-role="page" id="bck">
+
+			<div data-role="header" data-position="fixed">
+				<h1>FlashKarten</h1>
+				<a onclick="BbsCardManager.displayStats();" data-icon="grid" class="ui-btn-right">Stats</a>
+			</div>
+
+			<div data-role="content">
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><button type="submit" data-theme="b" data-icon="check" onclick="BbsCardManager.markAsCorrect();">Correct</button></div>
+					<div class="ui-block-b"><button type="submit" data-theme="e" data-icon="delete" onclick="BbsCardManager.markAsWrong();">Wrong</button></div>
+				</div>
+				<div id="tapBck" onclick="BbsCardManager.flip();">
+					<div id="backWord" class="card"></div>
+				</div>
+			</div>
+
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#frnt">Front</a></li>
+						<li><a href="#bck" class="ui-btn-active ui-state-persist">Back</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div data-role="dialog" id="rst">
+
+			<div data-role="header">
+				<h1>Congratulations!</h1>
+			</div>
+
+			<div data-role="content">
+				<div id="rstTxt"></div>
+			</div>
+
+		</div>
+
+
+		<div data-role="dialog" id="stats">
+
+			<div data-role="header">
+				<h1>Stats</h1>
+			</div>
+
+			<div data-role="content">
+				<div id="statsTxt"></div>
+				<a data-role="button" href="#conf" data-rel="popup">Reset Stats</a>
+
+				<div data-role="popup" id="conf" class="ui-content">
+					Are you sure that you want to reset the stats?
+					<a href="#" data-rel="back" data-role="button" data-icon="check" onclick="BbsCardManager.resetAllWords();BbsCardManager.goToFrntPage();">Yes</a>
+					<a href="#" data-rel="back" data-role="button" data-icon="delete">No</a>
+				</div>
+
+			</div>
+
+		</div>
+
+
+	</body>
 </html>
