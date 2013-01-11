@@ -9,8 +9,8 @@
         German-English flashcard mobile app for the 1,000 most popular words. This mobile app utilizes PhoneGap.
     </description>
 
-    <author href="http://phonegap.com" email="support@phonegap.com">
-        PhoneGap Team
+    <author href="http://brainbooksoftware.com" email="support@formfields.com">
+        Brain Book Software
     </author>
 
     <feature name="http://api.phonegap.com/1.0/device" />
