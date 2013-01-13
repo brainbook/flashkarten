@@ -2,7 +2,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.brainbooksoftware.flashkarten"
-        version   = "99.9">
+        version   = "0.9.9">
     <name>FlashKarten</name>
 
     <description>
