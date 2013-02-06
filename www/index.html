@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-	Copyright (c) 2013 Brain Book Software LLC
+	Copyright (c) 2013 Geoffrey Derek Cox
 	This software is licensed under the MIT license. A copy of the license
 	should have been included with this software.
 -->
@@ -12,31 +12,39 @@
 		<title>FlashKarten</title>
 		<link rel="stylesheet" href="libs/jquery.mobile-1.2.0.min.css" />
 		<script src="libs/jquery-1.8.2.min.js"></script>
+		<script src="js/manager.js"></script>
 		<script>
-			$(document).bind("mobileinit", function() {
-				$.mobile.defaultPageTransition = 'flip';
-			});
+			manager.mobileInit();
 		</script>
 		<script src="libs/jquery.mobile-1.2.0.min.js"></script>
+		<script src="libs/json2.min.js"></script>
+		<script src="libs/lawnchair-0.6.1.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
-		<script src="js/BbsCardManager.js"></script>
-		<script src="js/BbsGermanWords.js"></script>
+		<script src="js/translations.js"></script>
 		<script type="text/javascript">
-			BbsCardManager.initialize();
+			manager.initialize();
 		</script>
+		<!--[if lte IE 7]>
+		<style>
+			#tap-bck {
+				z-index: -1;
+			}
+		</style>
+		<![endif]-->
 	</head>
 	<body>
+
 
 		<div data-role="page" id="frnt">
 
 			<div data-role="header" data-position="fixed">
 				<h1>FlashKarten</h1>
-				<a onclick="BbsCardManager.displayStats();" data-icon="grid" class="ui-btn-right">Stats</a>
+				<a onclick="manager.displayStats();" data-icon="grid" class="ui-btn-right">Stats</a>
 			</div>
 
 			<div data-role="content">
-				<div id="tapFrnt" onclick="BbsCardManager.flip();">
-					<div id="frontWord" class="card"></div>
+				<div id="tap-frnt" onclick="manager.flip();">
+					<div id="frnt-word" class="card"></div>
 				</div>
 			</div>
 
@@ -56,16 +64,16 @@
 
 			<div data-role="header" data-position="fixed">
 				<h1>FlashKarten</h1>
-				<a onclick="BbsCardManager.displayStats();" data-icon="grid" class="ui-btn-right">Stats</a>
+				<a onclick="manager.displayStats();" data-icon="grid" class="ui-btn-right">Stats</a>
 			</div>
 
 			<div data-role="content">
 				<div class="ui-grid-a">
-					<div class="ui-block-a"><button type="submit" data-theme="b" data-icon="check" onclick="BbsCardManager.markAsCorrect();">Correct</button></div>
-					<div class="ui-block-b"><button type="submit" data-theme="e" data-icon="delete" onclick="BbsCardManager.markAsWrong();">Wrong</button></div>
+					<div class="ui-block-a"><button type="submit" data-theme="b" data-icon="check" onclick="manager.markAsCorrect();">Correct</button></div>
+					<div class="ui-block-b"><button type="submit" data-theme="e" data-icon="delete" onclick="manager.markAsWrong();">Wrong</button></div>
 				</div>
-				<div id="tapBck" onclick="BbsCardManager.flip();">
-					<div id="backWord" class="card"></div>
+				<div id="tap-bck" onclick="manager.flip();">
+					<div id="bck-word" class="card"></div>
 				</div>
 			</div>
 
@@ -106,7 +114,7 @@
 
 				<div data-role="popup" id="conf" class="ui-content">
 					Are you sure that you want to reset the stats?
-					<a href="#" data-rel="back" data-role="button" data-icon="check" onclick="BbsCardManager.resetAllWords();BbsCardManager.goToFrntPage();">Yes</a>
+					<a href="#" data-rel="back" data-role="button" data-icon="check" onclick="manager.resetAndGoToFrnt();">Yes</a>
 					<a href="#" data-rel="back" data-role="button" data-icon="delete">No</a>
 				</div>
 
