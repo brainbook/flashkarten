@@ -61,7 +61,9 @@ function addWord(i) {
 
 function initDb() {
 	dbInitialized = true;
-	Lawnchair({name: 'words', record: 'word'}, function(theWords) {
+	// We need to specify the dom adapter as a bug in Lawnchair defaults the
+	// adapter to window-name, which is not persistent
+	Lawnchair({name: 'words', record: 'word', adapter: 'dom'}, function(theWords) {
 		words = theWords;
 		addWord(0);
 	});
