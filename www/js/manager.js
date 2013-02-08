@@ -7,6 +7,7 @@
 var manager = (function() {
 
 var pick_wrong_percent = 0.15, // how often to repeat wrong words
+    properties = null,
     words = null,
     unreadTranslationIndexes = [],
     wrongTranslationIndexes = [],
@@ -14,8 +15,7 @@ var pick_wrong_percent = 0.15, // how often to repeat wrong words
     curWord = null,
     curUnreadIndex = null,
     curWrongIndex = null,
-    totalCorrect = 0,
-    totalWrong = 0,
+    mainProperty = null,
     dbInitialized = false,
     jqmReady = false,
     resetting = false,
@@ -40,12 +40,9 @@ function addWord(i) {
 			}
 			unreadTranslationIndexes.push(i);
 			pushed = true;
-		} else if (word.correct === true) {
-			totalCorrect += 1;
 		} else if (word.correct === false) {
 			wrongTranslationIndexes.push(i);
 			pushed = true;
-			totalWrong += word.nWrong;
 		}
 		
 		// First word or last word and all correct? Then display
@@ -63,9 +60,26 @@ function initDb() {
 	dbInitialized = true;
 	// We need to specify the dom adapter as a bug in Lawnchair defaults the
 	// adapter to window-name, which is not persistent
-	Lawnchair({name: 'words', record: 'word', adapter: 'dom'}, function(theWords) {
-		words = theWords;
-		addWord(0);
+	Lawnchair({name: 'properties', record: 'property', adapter: 'dom'}, function(theProperties) {
+		properties = theProperties;
+		properties.get('main', function(property) {
+			if (property) {
+				mainProperty = property;
+			} else {
+				// totalCorrect & totalWrong needed in case the user clicks the Stats button
+				// before the initDb has finished
+				mainProperty = {
+					key: 'main',
+					totalCorrect: 0,
+					totalWrong: 0
+				};
+				properties.save(mainProperty);
+			}
+			Lawnchair({name: 'words', record: 'word', adapter: 'dom'}, function(theWords) {
+				words = theWords;
+				addWord(0);
+			});
+		});
 	});
 }
 
@@ -133,10 +147,10 @@ function deleteCurUnreadOrWrong() {
 }
 
 function getCorrectPercent() {
-	if (totalCorrect === 0 && totalWrong === 0) {
+	if (mainProperty.totalCorrect === 0 && mainProperty.totalWrong === 0) {
 		return 0;
 	} else {
-		return Math.round(totalCorrect*100/(totalWrong + totalCorrect));
+		return Math.round(mainProperty.totalCorrect*100/(mainProperty.totalWrong + mainProperty.totalCorrect));
 	}
 }
 
@@ -144,8 +158,9 @@ function resetAllWords() {
 	curTranslation = null;
 	unreadTranslationIndexes = [];
 	wrongTranslationIndexes = [];
-	totalCorrect = 0;
-	totalWrong = 0;
+	mainProperty.totalCorrect = 0;
+	mainProperty.totalWrong = 0;
+	properties.save(mainProperty);
 	resetting = true;
 	addWord(0);
 }
@@ -225,21 +240,22 @@ return {
 	
 	displayStats: function() {
 		var p = getCorrectPercent();
-		$('#statsTxt').html(p + '% (' + totalCorrect + '/' + (totalWrong + totalCorrect) + ') correct.');
+		$('#statsTxt').html(p + '% (' + mainProperty.totalCorrect + '/' + (mainProperty.totalWrong + mainProperty.totalCorrect) + ') correct.');
 		$.mobile.changePage('#stats');
 	},
 
 	markAsCorrect: function() {
-		totalCorrect += 1;
+		mainProperty.totalCorrect += 1;
 		curWord.correct = true;
 		words.save(curWord, function() {
 			deleteCurUnreadOrWrong();
 			displayNextWord();
+			properties.save(mainProperty);
 		});
 	},
 	
 	markAsWrong: function() {
-		totalWrong += 1;
+		mainProperty.totalWrong += 1;
 		curWord.correct = false;
 		curWord.nWrong += 1;
 		words.save(curWord, function() {
@@ -248,6 +264,7 @@ return {
 				deleteCurUnreadOrWrong();
 			}
 			displayNextWord();
+			properties.save(mainProperty);
 		});
 	},
 	
