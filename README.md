@@ -4,7 +4,7 @@
 
 ## GitHub hosted version
 
-    http://brainbook.github.com/brainbook/flashkarten
+> http://brainbook.github.com/flashkarten
 
 ## Run Application
 
