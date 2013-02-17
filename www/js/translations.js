@@ -7,7 +7,7 @@
 // NOTE: The id must not change
 var translations = [
 	['2','of','von'],
-	['3','to','zu'],
+	['3','to, too','zu'],
 	['4','and','und'],
 	['5','a','ein'],
 	['6','in','in'],
@@ -148,7 +148,6 @@ var translations = [
 	['145','right','rechts'],
 	['146','boy','der Junge'],
 	['147','old','alt'],
-	['148','too','zu'],
 	['149','same','gleich'],
 	['150','to tell','erzählen'],
 	['151','does','tut, macht'],
