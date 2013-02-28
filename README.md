@@ -10,6 +10,10 @@
 
 > http://play.google.com/store/apps/details?id=com.brainbooksoftware.flashkarten
 
+## Apple App Store Version
+
+> https://itunes.apple.com/us/app/flashkarten/id593311931
+
 ## Run Application
 
     /www/index.html
